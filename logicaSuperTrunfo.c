@@ -11,13 +11,13 @@
 int main() {
     // Definição das variáveis para armazenar as propriedades das cidades
     // Você pode utilizar o código do primeiro desafio
-    char nome1[50], estado1[4], nome2[50], estado2[4];
-    int num_ponto_turistico1, cod_cidade1;
+    char nome1[50] = "", estado1[50] = "", nome2[50] = "", estado2[50] = "";
+    char populacao_str1[50] = "", area_str1[50] = "", pib_str1[50] = "", pontos_str1[50] = "";
+    char populacao_str2[50] = "", area_str2[50] = "", pib_str2[50] = "", pontos_str2[50] = "";
+    int num_ponto_turistico1, cod_cidade1, num_ponto_turistico2,cod_cidade2;
     unsigned long int populacao1, populacao2;
-    int num_ponto_turistico2, cod_cidade2;
-    float area1, pib1, pib_capita1, densidade1;
-    float area2, pib2, pib_capita2, densidade2;
-    float SuperPoder1, SuperPoder2;
+    float area1, pib1, pib_capita1, densidade1, SuperPoder1;
+    float area2, pib2, pib_capita2, densidade2, SuperPoder2;
     int menu;
     //int resultadoPop, resultadoArea, resultadoPib, resultadoPontos_tur, resultadoDensidade, resultadoPib_capita, resultadoSuperPoder;
 
@@ -47,24 +47,24 @@ int main() {
     nome1[strcspn(nome1, "\n")] = 0;
 
     printf("Quantidade de Habitantes: ");
-    scanf("%lu", &populacao1);
-    getchar();
+    fgets(populacao_str1, sizeof(populacao_str1), stdin);
+    populacao1 = strtoul(populacao_str1, NULL, 10); 
     
     printf("Digite a area geométrica: ");
-    scanf("%f", &area1);
-    getchar();
+    fgets(area_str1, sizeof(area_str1), stdin);
+    area1 = strtof(area_str1, NULL);
 
     printf("Digite o PIB: ");
-    scanf("%f", &pib1);
-    getchar();
+    fgets(pib_str1, sizeof(pib_str1),stdin);
+    pib1 = strtof(area_str1, NULL);
 
     printf("Digite o número de pontos turisticos: ");
-    scanf("%d", &num_ponto_turistico1);
-    getchar();
+    fgets(pontos_str1, sizeof(pontos_str1), stdin);
+    num_ponto_turistico1 = atoi(pontos_str1);
 
-    densidade1 = (float) populacao1 / area1;
+    densidade1 = (area > 0) ? (float) populacao1 / area1 : 0;//impedindo divisão por 0
     pib_capita1 = (float) (pib1 * 1000000000) / populacao1;
-    SuperPoder1 = (float) populacao1 + area1 + pib1 + num_ponto_turistico1 + (1 / densidade1) + pib_capita1;
+    SuperPoder1 = populacao1 + area1 + pib1 + num_ponto_turistico1 + ((densidade1 > 0) ? (1 / densidade1) : 0) + pib_capita1; //Impede divisão por 0
 
    
     // CADASTRO DA CARTA 02
@@ -84,24 +84,24 @@ int main() {
     nome2[strcspn(nome2, "\n")] = 0;
 
     printf("Quantidade de Habitantes: ");
-    scanf("%lu", &populacao2);
-    getchar();
+    fgets (populacao_str2, sizeof(populacao_str2), stdin);
+    populacao_str2 = strtoul(populacao_str2, NULL, 10);
 
     printf("Digite a area geométrica: ");
-    scanf("%f", &area2);
-    getchar();
+    fgets(area_str2, sizeof(area_str2), stdin);
+    area2 = strtof(area_str2, NULL);
 
     printf("Digite o PIB: ");
-    scanf("%f", &pib2);
-    getchar();
+    fgets(pib_str2, sizeof(pib_str2), stdin);
+    pib2 = strtof(pib_str2, NULL);
 
     printf("Digite o número de pontos turisticos: ");
-    scanf("%d", &num_ponto_turistico2);
-    getchar();
+    fgets(pontos_str2, sizeof(pontos_str2), stdin);
+    num_ponto_turistico2 = atoi(pontos_str2);
 
-    densidade2 = (float) populacao2 / area2;
+    densidade2 = (densidade2 > 0) ? (float) populacao2 / area2 : 0;
     pib_capita2 = (float) (pib2 * 1000000000) / populacao2;
-    SuperPoder2 = (float) populacao2 + area2 + pib2 + num_ponto_turistico2 + (1 / densidade2) + pib_capita2;
+    SuperPoder2 = populacao2 + area2 + pib2 + num_ponto_turistico2 + ((densidade2 > 0) ? (1 / densidade2) : 0) + pib_capita2;
 
 
     // Comparação de Cartas:
@@ -123,10 +123,11 @@ int main() {
     printf("5. Comparar Densidade demográfica\n\n");
     printf("DIGITE QUAL ATRIBUTO DESEJA COMPARAR: ");
     scanf("%d", &menu);
+    getchar();
 
     switch (menu)
     {
-    case 1:
+    case 1:{
         printf("\n\n** Atributo: População **\n");
         printf("Carta 1 - %s: %lu habitantes\n", nome1, populacao1);
         printf("Carta 2 - %s: %lu habitantes\n", nome2, populacao2);
@@ -138,9 +139,10 @@ int main() {
             } else {
                 printf("Resultado: Carta 2 (%s) venceu!\n", nome2);
             }
+        }    
         break;
     
-    case 2: 
+    case 2:{ 
         printf("\n** Atributo: Area/km² **\n");
         printf("Carta 1 - %s: %.2f km²\n", nome1, area1);
         printf("Carta 2 - %s: %.2f km²\n", nome2, area2);    
@@ -152,9 +154,10 @@ int main() {
             }else{
                 printf("Resultado: Carta 2 (%s) venceu!\n", nome2);
             }
-            break;
+        }
+        break;
             
-    case 3:
+    case 3:{
         printf("\n\n** Atributo: PIB **\n");
         printf("Carta 1 - %s: %f\n", nome1, pib1);
         printf("Carta 2 - %s: %f\n", nome2, pib2);
@@ -166,10 +169,11 @@ int main() {
                 printf("Resultado: Carta 1 (%s) venceu!\n", nome1);
             }else{
                 printf("Resultado: Carta 2 (%s) venceu!\n", nome2);
-            }               
-            break;
+            }
+        }                   
+        break;
             
-    case 4:
+    case 4:{
         printf("\n\n** Atributo: Pontos Turisticos **\n");
         printf("Carta 1 - %s: %d\n", nome1, num_ponto_turistico1);
         printf("Carta 2 - %s: %d\n", nome2, num_ponto_turistico2);    
@@ -181,7 +185,8 @@ int main() {
             } else{
                 printf("Resultado: Carta 2 (%s) venceu!\n", nome2);
             };
-            break;
+        }  
+        break;
             
     case 5:
         printf("\n\nComparação das cartas (Atributo: Densidade Populacional)\n");
