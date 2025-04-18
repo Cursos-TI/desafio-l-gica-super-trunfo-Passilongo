@@ -19,6 +19,9 @@ int main() {
     float area1, pib1, pib_capita1, densidade1, SuperPoder1;
     float area2, pib2, pib_capita2, densidade2, SuperPoder2;
     int menu;
+    int resultado1, resultado2;
+    int primeiroAtributo, segundoAtributo;
+
     //int resultadoPop, resultadoArea, resultadoPib, resultadoPontos_tur, resultadoDensidade, resultadoPib_capita, resultadoSuperPoder;
 
     
@@ -62,7 +65,7 @@ int main() {
     fgets(pontos_str1, sizeof(pontos_str1), stdin);
     num_ponto_turistico1 = atoi(pontos_str1);
 
-    densidade1 = (area > 0) ? (float) populacao1 / area1 : 0;//impedindo divisão por 0
+    densidade1 = (area1 > 0) ? (float) populacao1 / area1 : 0;//impedindo divisão por 0
     pib_capita1 = (float) (pib1 * 1000000000) / populacao1;
     SuperPoder1 = populacao1 + area1 + pib1 + num_ponto_turistico1 + ((densidade1 > 0) ? (1 / densidade1) : 0) + pib_capita1; //Impede divisão por 0
 
@@ -85,7 +88,7 @@ int main() {
 
     printf("Quantidade de Habitantes: ");
     fgets (populacao_str2, sizeof(populacao_str2), stdin);
-    populacao_str2 = strtoul(populacao_str2, NULL, 10);
+    populacao2 = strtoul(populacao_str2, NULL, 10);
 
     printf("Digite a area geométrica: ");
     fgets(area_str2, sizeof(area_str2), stdin);
@@ -121,10 +124,106 @@ int main() {
     printf("3. Comparar PIB\n");
     printf("4. Comparar Números de Pontos Turisticos\n");
     printf("5. Comparar Densidade demográfica\n\n");
-    printf("DIGITE QUAL ATRIBUTO DESEJA COMPARAR: ");
-    scanf("%d", &menu);
-    getchar();
+    printf("DIGITE O PRIMEIRO ATRIBUTO DE COMPARARAÇÃO: ");
 
+    /*fgets(primeiroAtributo, sizeof(primeiroAtributo), stdin);
+    primeiroAtributo[strcspn(primeiroAtributo, "\n")] = 0;*/
+
+    scanf("%d", &primeiroAtributo);
+
+    switch (primeiroAtributo)
+    {
+    case 1:
+        printf("Você escolheu comparar a População!\n");
+        resultado1 = populacao1 > populacao2 ? 1 : 0;
+        break;
+    case 2:
+    {
+        printf("Você escolheu comparar a Área!\n");
+        resultado1 = area1 > area2 ? 1 : 0;
+        break;
+    }
+    case 3:
+    {
+        printf("Você escolheu comparar o PIB!\n");
+        resultado1 = pib1 > pib2 ? 1 : 0;
+        break;
+    }
+    case 4:
+    {
+        printf("Você escolheu comparar os Pontos Turísticos!\n");
+        resultado1 = num_ponto_turistico1 > num_ponto_turistico2 ? 1 : 0;
+        break;
+    }
+    case 5:
+    {
+        printf("Você escolheu comparar a Densidade demografica!\n");
+        resultado1 = densidade1 < densidade2 ? 1 : 0;
+        break;
+    }
+    
+    default:
+    {
+        printf("Opção de jogo inválida!\n");
+    }
+        break;
+    }
+
+    printf("DIGITE O SEGUNDO ATRIBUTO DE COMPARARAÇÃO: ");
+
+    /*fgets(segundoAtributo, sizeof(segundoAtributo), stdin);
+    segundoAtributo[strcspn(segundoAtributo, "\n")] = 0;*/
+
+    scanf("%d", &segundoAtributo);
+
+    if (primeiroAtributo == segundoAtributo)
+    {
+        printf("Você escolheu o mesmo atributo");
+    } else{
+    switch (segundoAtributo)
+        {
+    case 1:
+        printf("Você escolheu comparar a População!\n");
+        resultado2 = populacao1 > populacao2 ? 1 : 0;
+        break;
+    case 2:
+    {
+        printf("Você escolheu comparar a Área!\n");
+        resultado2 = area1 > area2 ? 1 : 0;
+        break;
+    }
+    case 3:
+    {
+        printf("Você escolheu comparar o PIB!\n");
+        resultado2 = pib1 > pib2 ? 1 : 0;
+        break;
+    }
+    case 4:
+    {
+        printf("Você escolheu comparar os Pontos Turísticos!\n");
+        resultado2 = num_ponto_turistico1 > num_ponto_turistico2 ? 1 : 0;
+        break;
+    }
+    case 5:
+    {
+        printf("Você escolheu comparar a Densidade demografica!\n");
+        resultado2 = densidade1 < densidade2 ? 1 : 0;
+        break;
+    }
+    
+    default:
+    {
+        printf("Opção de jogo inválida!\n");
+    }
+        break;
+        }
+
+    }
+
+    printf("Cheguei aqui");
+
+    /*scanf("%d", &menu);
+    getchar();
     switch (menu)
     {
     case 1:{
@@ -205,7 +304,7 @@ int main() {
     default:
         printf("Número digitado incorreto!");
         break;
-    }
+    }*/
     
 
     
