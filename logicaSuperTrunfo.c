@@ -19,7 +19,7 @@ int main() {
     float area1, pib1, pib_capita1, densidade1, SuperPoder1, res_area1, res_pib1;
     float area2, pib2, pib_capita2, densidade2, SuperPoder2, res_area2, res_pib2;
     int menu;
-    int resultado1, resultado2;
+    float resultado1, resultado2;
     
     //int resultadoPop, resultadoArea, resultadoPib, resultadoPontos_tur, resultadoDensidade, resultadoPib_capita, resultadoSuperPoder;
 
@@ -249,29 +249,53 @@ int main() {
      switch (primeiroAtributo) {
          case 1:
              printf("Você escolheu comparar a População!\n\n");
-             if (populacao1 > populacao2) vitoriaCarta1++;
-             else if (populacao1 < populacao2) vitoriaCarta2++;
+             if (populacao1 > populacao2) {
+                vitoriaCarta1++; 
+                resultado1 = populacao1;
+             }
+             else if (populacao1 < populacao2) {
+                vitoriaCarta2++;
+                resultado1 = populacao1;
+             }
              somaCarta1 += populacao1;
              somaCarta2 += populacao2;
              break;
          case 2:
              printf("Você escolheu comparar a Área!\n\n");
-             if (area1 > area2) vitoriaCarta1++;
-             else if (area1 < area2) vitoriaCarta2++;
+             if (area1 > area2) {
+                vitoriaCarta1++;
+                resultado1 = area1;
+             }
+             else if (area1 < area2) {
+                vitoriaCarta2++;
+                resultado1 = area1;
+             }
              somaCarta1 += area1;
              somaCarta2 += area2;
              break;
          case 3:
              printf("Você escolheu comparar o PIB!\n\n");
-             if (pib1 > pib2) vitoriaCarta1++;
-             else if (pib1 < pib2) vitoriaCarta2++;
+             if (pib1 > pib2) {
+                vitoriaCarta1++; 
+                resultado1 = pib1;
+             }
+             else if (pib1 < pib2) {
+                vitoriaCarta2++;
+                resultado1 = pib1;
+             }
              somaCarta1 += pib1;
              somaCarta2 += pib2;
              break;
     case 4:
         printf("Você escolheu comparar os Pontos Turísticos!\n\n");
-        if (num_ponto_turistico1 > num_ponto_turistico2) vitoriaCarta1++;
-        else if (num_ponto_turistico1 < num_ponto_turistico2) vitoriaCarta2++;
+        if (num_ponto_turistico1 > num_ponto_turistico2) {
+            vitoriaCarta1++;
+            resultado1 = num_ponto_turistico1;
+        }
+        else if (num_ponto_turistico1 < num_ponto_turistico2) {
+            vitoriaCarta2++;
+            resultado1 = num_ponto_turistico1;
+        }
         somaCarta1 += num_ponto_turistico1;
         somaCarta2 += num_ponto_turistico2;
         break;
@@ -297,8 +321,12 @@ int main() {
 switch (segundoAtributo) {
     case 1:
         printf("Você escolheu comparar a População!\n");
-        if (populacao1 > populacao2) vitoriaCarta1++;
-        else if (populacao1 < populacao2) vitoriaCarta2++;
+        if (populacao1 > populacao2) {
+            vitoriaCarta1++;
+        }
+        else if (populacao1 < populacao2) {
+            vitoriaCarta2++;
+        }
         somaCarta1 += populacao1;
         somaCarta2 += populacao2;
         break;
@@ -337,18 +365,23 @@ switch (segundoAtributo) {
 // Resultado Final
 printf("\n** RESULTADO FINAL **\n");
 printf("Atributos comparados:\n");
-printf("- Atributo %d: %s\n", primeiroAtributo, (primeiroAtributo == 1) ? "População" :
+
+
+printf("- Atributo %d: %s \n", primeiroAtributo, (primeiroAtributo == 1) ? "População" ? :
        (primeiroAtributo == 2) ? "Área" :
-       (primeiroAtributo == 3) ? "PIB" :
-       (primeiroAtributo == 4) ? "Pontos Turísticos" : "Densidade Demográfica");
+       (primeiroAtributo == 3) ? "PIB" ? :
+       (primeiroAtributo == 4) ? "Pontos Turísticos" : "Densidade Demográfica" );
 printf("- Atributo %d: %s\n", segundoAtributo, (segundoAtributo == 1) ? "População" :
        (segundoAtributo == 2) ? "Área" :
        (segundoAtributo == 3) ? "PIB" :
        (segundoAtributo == 4) ? "Pontos Turísticos" : "Densidade Demográfica");
+       
+    
+    
 
 printf("\nValores dos atributos:\n");
-printf("- Carta 1 (%s): %lu , %.2f \n", nome1, populacao1, area1);
-printf("- Carta 2 (%s): %lu , %.2f \n", nome2, populacao2, area2);
+printf("- Carta 1 (%s): %.2f \n", nome1, resultado2, );
+printf("- Carta 2 (%s): %.2f \n", nome2, resultado2);
 
 printf("\nSoma dos atributos:\n");
 printf("- Carta 1: %.2f\n", somaCarta1);
